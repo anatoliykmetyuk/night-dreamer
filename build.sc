@@ -3,6 +3,8 @@ import mill._, scalalib._
 object core extends ScalaModule {
   def scalaVersion = "3.0.0-M1-bin-20201018-bdf634c-NIGHTLY"
 
+  def forkArgs = Seq("-XstartOnFirstThread")
+
   def ivyDeps = Agg(
     ivy"org.lwjgl:lwjgl:3.2.3",
     ivy"org.lwjgl:lwjgl-assimp:3.2.3",

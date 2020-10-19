@@ -11,10 +11,9 @@ import org.lwjgl.opengl.GL11._
 import org.lwjgl.system.MemoryStack._
 import org.lwjgl.system.MemoryUtil._
 
-object HelloWorld {
-
+object HelloWorld:
   // The window handle
-  var window = -1
+  var window = -1L
 
   def run() =
     println("Hello LWJGL " + Version.getVersion() + "!")
@@ -58,15 +57,15 @@ object HelloWorld {
 
     // Get the thread stack and push a new frame
     val stack: MemoryStack = stackPush()
-    try
-      IntBuffer pWidth = stack.mallocInt(1); // int*
-      IntBuffer pHeight = stack.mallocInt(1); // int*
+    try {
+      val pWidth: IntBuffer = stack.mallocInt(1); // int*
+      val pHeight: IntBuffer = stack.mallocInt(1); // int*
 
       // Get the window size passed to glfwCreateWindow
       glfwGetWindowSize(window, pWidth, pHeight);
 
       // Get the resolution of the primary monitor
-      GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+      val vidmode: GLFWVidMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
       // Center the window
       glfwSetWindowPos(
@@ -74,7 +73,7 @@ object HelloWorld {
         (vidmode.width() - pWidth.get(0)) / 2,
         (vidmode.height() - pHeight.get(0)) / 2
       )
-    end try
+    }
     finally stack.close()
     // the stack frame is popped automatically
 
